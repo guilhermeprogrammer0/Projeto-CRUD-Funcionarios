@@ -13,7 +13,9 @@ function cadastrar($conexao,$nome,$email,$cargo){
         $sqlCadastrado = mysqli_query($conexao,$sqlCadastrar);
         if($sqlCadastrado){
             ?>
-            <script>alert("Funcionário cadastrado com sucesso!");</script>
+            <script>alert("Funcionário cadastrado com sucesso!");
+              window.location.href="principal.php";
+            </script>
             <?php
         }
         else{
