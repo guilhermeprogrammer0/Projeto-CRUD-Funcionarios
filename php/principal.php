@@ -13,35 +13,45 @@
     </header>
     <main class="lista">
         <section class="btnCadastrar">
-            <button class="botaoCadastrar">Cadastrar</button>
+           <a href="cadastro.php"> <button class="botaoCadastrar">Cadastrar</button></a>
         </section>
         <section class="tabelaDados">
-        <table class="table table-dark table-hover">
-        <thead>
+        <table class="table table-striped">
+        <thead class="table-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
       <th scope="col">E-mail</th>
       <th scope="col">Cargo</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Excluir</th>
     </tr>
   </thead>
+  <?php 
+  require_once "conexao.php";
+  $sqlExibir = "SELECT * FROM funcionarios";
+  $sqlDados = mysqli_query($conexao,$sqlExibir);
+  while($linha = mysqli_fetch_array($sqlDados)){
+  ?>
   <tbody>
     <tr>
-      <td>1</td>
-      <td>Guilherme</td>
-      <td>gui@gmail.com</td>
-      <td>Técnico de Informática</td>
-
+        <td><?php echo $linha['id'];?></td>
+        <td><?php echo $linha['nome'];?></td>
+        <td><?php echo $linha['email'];?></td>
+        <td><?php echo $linha['cargo'];?></td>
+        <td><button class="btn btn-warning" onclick="editar(<?php echo $linha['id'];?>)">Editar </td>           
+        <td><button class="btn btn-danger" onclick="excluir(<?php echo $linha['id'];?>)"> Excluir</td>
     </tr>
+    <?php }?>
   </tbody>
         </table>
-        </section>
+    </section>
     </main>
     
     
 
 
 
-
+    <script src="../js/acoes.js"></script>
 </body>
 </html>
