@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-            <h1> Funcionários </h1>
+            <h1> Cadastro de Funcionários </h1>
     </header>
     <main class="cadastro">
         <form action="cadastro.php" method="POST">

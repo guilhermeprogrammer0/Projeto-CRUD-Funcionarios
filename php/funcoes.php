@@ -1,17 +1,21 @@
 <?php
 function cadastrar($conexao,$nome,$email,$cargo){
-    $sqlVerificar = "SELECT email FROM funcionarios WHERE email = '$email'";
-    $sqlVerificado = mysqli_query($conexao,$sqlVerificar);
-    $qtdLinhas = mysqli_num_rows($sqlVerificado);
-    if($qtdLinhas>=1){
+    $sqlVerificar = "SELECT email FROM funcionarios WHERE email = ?";
+    $stmtVerificar = $conexao->prepare($sqlVerificar);
+    $stmtVerificar->bind_param("s",$email);
+    $stmtVerificar->execute();
+    $resultado = $stmtVerificar->get_result();
+    if($resultado->num_rows>0){
         ?>
         <script>alert("E-mail indisponível! Tente outro.");</script>
         <?php
+        $stmtVerificar->close();
     }
     else{
-        $sqlCadastrar = "INSERT INTO funcionarios VALUES(DEFAULT,'$nome','$email','$cargo')";
-        $sqlCadastrado = mysqli_query($conexao,$sqlCadastrar);
-        if($sqlCadastrado){
+        $sqlCadastrar = "INSERT INTO funcionarios VALUES(DEFAULT,?,?,?)";
+        $stmtCadastrar = $conexao->prepare($sqlCadastrar);
+        $stmtCadastrar->bind_param("sss",$nome,$email,$cargo);
+        if($stmtCadastrar->execute()){
             ?>
             <script>alert("Funcionário cadastrado com sucesso!");
               window.location.href="principal.php";
@@ -24,11 +28,13 @@ function cadastrar($conexao,$nome,$email,$cargo){
             <?php
         }
     }
+    $stmtCadastrar->close();
 }
 function editar($conexao,$id,$nome,$email,$cargo){
-    $sqlAtualizar = "UPDATE funcionarios set nome='$nome', email='$email', cargo='$cargo' WHERE id = '$id'";
-    $sqlAtualizado = mysqli_query($conexao,$sqlAtualizar);
-    if($sqlAtualizado){
+    $sqlAtualizar = "UPDATE funcionarios set nome=?, email=?, cargo=? WHERE id = ?";
+    $stmtAtualizar = $conexao->prepare($sqlAtualizar);
+    $stmtAtualizar->bind_param("sssi",$nome,$email,$cargo,$id);
+    if( $stmtAtualizar->execute()){
         ?>
         <script>alert("Funcionário editado com sucesso!");
         window.location.href="principal.php";
@@ -41,11 +47,13 @@ function editar($conexao,$id,$nome,$email,$cargo){
         <script>alert("Erro ao editar! Tente novamente.");</script>
         <?php
     }
+    $stmtAtualizar->close();
 }
 function excluir($conexao,$id){
-   $sqlExcluir = "DELETE FROM funcionarios WHERE id='$id'";
-   $sqlExcluido = mysqli_query($conexao,$sqlExcluir);
-   if($sqlExcluido){
+   $sqlExcluir = "DELETE FROM funcionarios WHERE id=?";
+   $stmtExcluir = $conexao->prepare($sqlExcluir);
+   $stmtExcluir->bind_param("i",$id);
+   if($stmtExcluir->execute()){
     ?>
         <script>alert("Funcionário excluido com sucesso!");</script>
         <?php
@@ -55,8 +63,7 @@ function excluir($conexao,$id){
     <script>alert("Erro ao excluir! Tente novamente.");</script>
     <?php
    }
+   $stmtExcluir->close();
 }
-
-
 
 ?>

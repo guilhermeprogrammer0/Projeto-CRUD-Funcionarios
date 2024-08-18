@@ -9,13 +9,16 @@
 </head>
 <body>
     <header>
-            <h1> Funcionários </h1>
+            <h1> Edição de Funcionários </h1>
     </header>
     <?php
         require_once "conexao.php";
-        $sqlExibir = "SELECT * FROM funcionarios WHERE id=$_REQUEST[id]";
-        $sqlDados = mysqli_query($conexao,$sqlExibir);
-        $linha = mysqli_fetch_array($sqlDados);
+        $sqlExibir = "SELECT * FROM funcionarios WHERE id = ?";
+        $stmtSqlExibir = $conexao->prepare($sqlExibir);
+        $stmtSqlExibir->bind_param("i",$_REQUEST["id"]);
+        $stmtSqlExibir->execute();
+        $sqlDados = $stmtSqlExibir->get_result();
+        $linha = $sqlDados->fetch_array();
     ?>
     <main class="cadastro">
         <form action="editar.php" method="POST">

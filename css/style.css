@@ -19,7 +19,7 @@ header{
 header h1{
     color:#F2F2F2;
     font-family: 'Montserrat';
-    font-size:1.9em;
+    font-size:2em;
 }
 .lista{
     display:flex;
@@ -52,18 +52,22 @@ header h1{
 }
 .botaoCadastrar{
     border:none;
-    width:190px;
+    width:230px;
     background-color: #08428C;
     color:white;
-    border-radius: 0.9em;
-    padding:0.6em;
+    border-radius: 0.4em;
+    padding:0.7em;
     font-size: 1.1em;
 }
 .cadastro{
     display:flex;
     flex-direction: column;
     margin:auto;
-    padding:20px;
+    margin-top:20px;
+    padding:60px;
+    width:45%;
+    border-radius:0.7em;
+    background-color:white;
 
 }
 .divCampos{
@@ -72,13 +76,24 @@ header h1{
     margin-bottom:15px;
 }
 .divCampos .formulario{
-    display: block;
-    width:350px;
-    padding:0.4em;
-    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.048);
-    border-radius: 0.2em;
-    border: solid 2px rgba(0, 0, 0, 0.336)
+
+  padding: 10px;
+  border-radius: 8px; 
+  border: 1px solid #ccc; 
+  background-color: #f9f9f9; 
+  font-size: 16px; 
+  color: #333; 
+  transition: all 0.3s ease; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  width:300px;
 }
+.divCampos .formulario:focus {
+    border-color: #007bff; 
+    background-color: #fff; 
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25); 
+    outline: none; 
+  }
+  
 .btnEstilo{
     margin-right: 25px;
 }

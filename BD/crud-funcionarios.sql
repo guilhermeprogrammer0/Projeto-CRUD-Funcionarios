@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2024 às 15:55
+-- Tempo de geração: 18/08/2024 às 05:15
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -41,8 +41,8 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`id`, `nome`, `email`, `cargo`) VALUES
-(3, 'Kethilin R', 'kethilin@outlook.com', 'Laboratório'),
-(7, 'Manuela', 'manuela@gmail.com', 'Estudante');
+(1, 'Guilherme', 'gui@gmail.com', 'Técnico de Informática'),
+(2, 'Kethilin', 'keth@gmail.com', 'Auxiliar de laboratório');
 
 --
 -- Índices para tabelas despejadas
@@ -62,7 +62,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

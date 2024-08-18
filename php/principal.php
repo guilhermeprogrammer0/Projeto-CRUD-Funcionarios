@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-            <h1> Funcionários </h1>
+            <h1> CRUD Funcionários </h1>
     </header>
     <main class="lista">
         <section class="btnCadastrar">
@@ -30,8 +30,8 @@
   <?php 
   require_once "conexao.php";
   $sqlExibir = "SELECT * FROM funcionarios";
-  $sqlDados = mysqli_query($conexao,$sqlExibir);
-  while($linha = mysqli_fetch_array($sqlDados)){
+  $result_exibir = $conexao->query($sqlExibir);
+  while($linha = $result_exibir->fetch_array()){
   ?>
   <tbody>
     <tr>
